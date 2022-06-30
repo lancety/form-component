@@ -1,0 +1,12 @@
+.form-control.checkboxMulti {
+  .checkboxMulti-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    & > div {
+      flex-basis: 100px;
+    }
+  }
+}

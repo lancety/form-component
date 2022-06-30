@@ -1,0 +1,149 @@
+@mixin col-1() {
+  .form-control-label {
+
+  }
+
+  .form-control {
+    width: 100%;
+  }
+}
+
+@mixin col-2() {
+  .form-control-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .form-control-label {
+    flex-basis: 150px;
+    text-align: right;
+    margin-right: 12px;
+  }
+
+  .form-control:not(.textarea):not(.radio) {
+    flex-basis: 350px;
+  }
+  .form-control.textarea, .form-control.radio {
+    flex-basis: calc(100% - 150px);
+  }
+  .form-control.checkbox {
+    text-align: left;
+  }
+
+  // specific responsive style
+  .form-control.radio {
+    .form-control-radio-cont {
+      margin-right: 12px;
+      display: inline-block;
+    }
+  }
+}
+
+
+// todo - this is not working
+form {
+  @media (max-width: 512px) {
+    @include col-1;
+  }
+  @media (min-width: 512px) {
+    @include col-2;
+  }
+}
+
+.form-control-container {
+  position: relative;
+  margin-bottom: 2rem;
+
+  &:last-of-type {
+    margin-bottom: 2rem;
+  }
+
+
+
+  .form-control-label {
+
+  }
+
+  .form-control {
+    position: relative;
+
+    label[for] {
+      cursor: pointer;
+    }
+
+    & > input:not([type=checkbox]), & > textarea, & > select {
+      padding: 5px;
+      width: 100%;
+    }
+
+    & > input[type="date"], & > input[type="time"] {
+      padding: 5px;
+      width: 48%;
+    }
+
+    &.inline {
+      width: unset;
+      margin: 0;
+      vertical-align: middle;
+    }
+
+    /**
+     * special state style
+     */
+    &.dirty.invalid, &.dirty:invalid {
+      &::placeholder, &::-webkit-input-placeholder {
+        color: #fff;
+      }
+    }
+    &.warned {
+      color: #fff;
+
+      &::placeholder, &::-webkit-input-placeholder {
+        color: #fff;
+      }
+    }
+
+    &.dirty.valid, &.dirty:valid {
+
+    }
+
+    &[disabled] {
+      cursor: not-allowed;
+    }
+
+    &.read-only {
+      *:not(.popup) {
+        background-color: unset;
+      }
+      :not(textarea) {
+        border: unset;
+      }
+    }
+  }
+
+  .popup {
+    position: absolute;
+    right: 2px;
+    max-width: calc(100% - 0.4rem);
+    bottom: 100%;
+    padding: 0 10px 0 20px;
+    text-align: left;
+    border-radius:  1rem 0 0 0;
+
+    &--error {
+      background-color: var(--red-color);
+      color: #fff;
+    }
+
+    &--warn {
+      background-color: var(--main-color-b);
+      color: var(--main-font-b);
+    }
+
+    &--info {
+      background-color: var(--yellow-color);
+      color: #fff;
+    }
+  }
+}

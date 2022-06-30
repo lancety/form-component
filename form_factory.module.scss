@@ -1,0 +1,19 @@
+form {
+  .form-control-container.hidden {
+    display: none;
+  }
+
+  .form-control-btns > .form-control {
+    text-align: right;
+  }
+  .form-control-btns .btn {
+    margin-left: 6px;
+  }
+}
+
+
+form.invalid {
+  .btn-form-submit {
+    cursor: not-allowed;
+  }
+}
